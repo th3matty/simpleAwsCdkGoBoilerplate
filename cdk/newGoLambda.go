@@ -36,8 +36,8 @@ func NewGoLambda(stack constructs.Construct, functionName string) awscdklambdago
 	// 	logRetention = awslogs.RetentionDays_TWO_WEEKS
 	// }
 
-	lambda := awscdklambdagoalpha.NewGoFunction(stack, jsii.String(fmt.Sprintf("myGoLambda-%s", functionName)), &awscdklambdagoalpha.GoFunctionProps{
-		FunctionName: jsii.String(fmt.Sprintf("myGoLambda-%s", functionName)),
+	lambda := awscdklambdagoalpha.NewGoFunction(stack, jsii.String(fmt.Sprintf("string-container-lambda-%s", functionName)), &awscdklambdagoalpha.GoFunctionProps{
+		FunctionName: jsii.String(fmt.Sprintf("string-container-%s", functionName)),
 		Entry:        jsii.String(fmt.Sprintf("../functions/%s/main.go", functionName)),
 		//LogRetention: logRetention,
 	})

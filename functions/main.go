@@ -7,6 +7,8 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	jsoniter "github.com/json-iterator/go"
+
+	//"github.com/th3matty/simpleAwsCdkGoBoilerplate/functions/myGoLambda/model/"
 	"go.uber.org/zap"
 )
 
@@ -25,18 +27,15 @@ func init() {
 }
 
 func handle(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	var input model.HasherRequest
+	var input model.InputPost
 	err := jsoniter.UnmarshalFromString(request.Body, &input)
 	if err != nil {
 		logger.Error("Error unmarshaling body", zap.Error(err))
 		return events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError}, err
 	}
 
-	normalizerService := service.NewNormalizer()
-	normalizedInput := normalizerService.Normalize(input)
-
-	hasherService := service.NewHasher(logger)
-	result := hasherService.HashInput(normalizedInput)
+	// reult logic here
+	// fmt.Println(strings.ContainsAny("team", "i"))
 	resultJson, err := jsoniter.MarshalToString(result)
 
 	if err != nil {
